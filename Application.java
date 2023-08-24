@@ -26,7 +26,7 @@ public class Application {
         do {
             final String APP_TITLE = String.format("%s%s%s", COLOR_BLUE_BOLD, screen, RESET);
 
-           // System.out.println(CLEAR);
+            System.out.println(CLEAR);
             System.out.printf("%s\n", "-".repeat(30));
             System.out.println(" ".repeat((30 - APP_TITLE.length() + 7) / 2).concat(APP_TITLE));
             System.out.printf("%s\n", "-".repeat(30));
