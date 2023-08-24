@@ -26,7 +26,7 @@ public class Application {
         do {
             final String APP_TITLE = String.format("%s%s%s", COLOR_BLUE_BOLD, screen, RESET);
 
-            System.out.println(CLEAR);
+           // System.out.println(CLEAR);
             System.out.printf("%s\n", "-".repeat(30));
             System.out.println(" ".repeat((30 - APP_TITLE.length() + 7) / 2).concat(APP_TITLE));
             System.out.printf("%s\n", "-".repeat(30));
@@ -143,7 +143,7 @@ public class Application {
 
                             status2 = existingAccountNumber(accountNum,account);
 
-                        do{
+                        
                             if(status2 == -1){
                                 System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
                                 if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
@@ -171,40 +171,20 @@ public class Application {
                                 }else{
                                     currentBalance = Double.valueOf(account[status2][2]) + amount;
                                     account[status2][2] = currentBalance + "";
+                                    System.out.printf("Current Balance is : Rs%.2f\n",Float.valueOf(account[status2][2]));
                                 }
 
-                                System.out.printf("Current Balance is Rs: %.2f\n",Float.valueOf(account[status2][2]));
-                                System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);   
-                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                screen = DASHBOARD;
-                                break;
-
                             }
-                        }while(!valid);
-                        
-                        }if(!validateAccountNumber(accountNum)){
-
-                        System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                        if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue deposit;
-                        valid = false;
-                        screen = DASHBOARD;
-                        break; 
-                        }break;
-
+                        }
 
                      } while (!valid);
+                            System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
+                            if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
+                            valid = false;
+                            screen = DASHBOARD;
+                            break; 
 
-                        // System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                        // if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                        // screen = DASHBOARD;
-                        // break; 
-                        
-
-                        
-                            
-
-                   
-
+                
 
                 case WITHDRAW_MONEY:
 
@@ -213,9 +193,6 @@ public class Application {
                             System.out.print("Enter your Account Number :");
                             accountNum = scanner.nextLine().toUpperCase().strip();
                         
-                            
-                           // boolean status1 = validateAccountNumber(accountNum);
-
                             if(validateAccountNumber(accountNum)){
 
                                 status2 = existingAccountNumber(accountNum,account);
@@ -254,26 +231,24 @@ public class Application {
                                                 account[status2][2]= currentBalance + "";
 
                                                 System.out.printf("Current Balance is : Rs%.2f\n",Float.valueOf(account[status2][2]));
-                                                System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);   
-                                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                                screen = DASHBOARD;
-                                                break;
+                                                
                                             }
                                         }
 
                                     }
                             }else{
-
-                                System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                valid = false;
-                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                screen = DASHBOARD;
-                                break; 
+ 
 
                             }
                             
                         
                     }while(!valid);
+                        
+                                System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
+                                valid = false;
+                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
+                                screen = DASHBOARD;
+                                break;
 
 
                 
@@ -287,8 +262,6 @@ public class Application {
                             valid = true;
                             System.out.print("Enter your From Account Number :");
                             accountNum = scanner.nextLine().toUpperCase().strip();
-                            
-                           // boolean status1 = validateAccountNumber(accountNum);
 
                             if(validateAccountNumber(accountNum)){
                                 status2 = existingAccountNumber(accountNum,account);
@@ -352,46 +325,20 @@ public class Application {
                                                     }
                                                 }
 
-                                                System.out.printf("%sDo you want to try again++++ ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                                screen = DASHBOARD;
-                                                break; 
-
-
-
-
-
-
-
-
                                             }
 
-
-                                         }else{
-
-                                            System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                            if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                            screen = DASHBOARD;
-                                            break; 
-
-                                        }
-
-                                        
-
-
-
+                                         }
                                     }
-
-                            }else{
-
-                                System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                screen = DASHBOARD;
-                                break; 
-
                             }
+                            
 
                     }while(!valid);
+
+                            System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
+                            if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
+                            screen = DASHBOARD;
+                            break; 
+
 
 
 
@@ -404,27 +351,73 @@ public class Application {
                             accountNum = scanner.nextLine().toUpperCase().strip();
 
                             if(validateAccountNumber(accountNum)){
+                                System.out.println("-----");
                                 status2 = existingAccountNumber(accountNum,account);
+                                System.out.println("99999");
 
                                     if(status2 == -1){
                                         System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
                                         if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
                                         screen = DASHBOARD;
                                         break; 
+                                    }else{
+                                        System.out.println("Account holder name :" + account[status2][1]);
+                                        System.out.printf("Current Balance is Rs:%.2f\n",Float.valueOf(account[status2][2]));
+
                                     }
-
-
-                            }else{
-                                System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                screen = DASHBOARD;
-                                break; 
-
                             }
 
+                    }while(!valid);
+                            System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
+                            if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
+                            screen = DASHBOARD;
+                            break; 
 
+
+
+                case DELETE_ACCOUNT:
+
+                    index=-1;
+                    String[][] newBankAccount = new String[account.length-1][3];
+                    
+                    do{
+                            valid = true;
+                            System.out.print("Enter your Account Number :");
+                            accountNum = scanner.nextLine().toUpperCase().strip();
+
+                                if(validateAccountNumber(accountNum)){
+                                    status2 = existingAccountNumber(accountNum,account);
+                                    if(status2 == -1){
+                                        System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
+                                        if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
+                                        screen = DASHBOARD;
+                                        break; 
+                                    }else{
+                                        index = status2;
+                                        for(int i=0;i<account.length;i++){
+                                                if(index<i){
+                                                    newBankAccount[i]=account[i];
+                                                }else if(index == i){
+                                                        continue;
+                                                }else{
+                                                    newBankAccount[i-1]=account[i];
+                                                }
+                                        }
+                        
+                                        account=newBankAccount;
+                        
+                                        System.out.println("Account is deleted Successfully");
+                                    }
+                                }
+                                    
 
                     }while(!valid);
+
+
+                         System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
+                        if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
+                        screen = DASHBOARD;
+                        break; 
 
 
                 }
