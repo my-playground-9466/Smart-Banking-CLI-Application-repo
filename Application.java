@@ -291,11 +291,10 @@ public class Application {
                                             }else{
                                                
                                                 indexTo = status4;
-                                               
-                                                System.out.println("Balance of from account Rs: "+ account[indexFrom][2]);
-                                                System.out.println("Balance of to account   Rs: "+ account[indexTo][2]);
 
-
+                                                System.out.printf("Balance of from account Rs:  %.2f\n",Double.valueOf(account[indexFrom][2]));
+                                                System.out.printf("Balance of to account Rs:  %.2f\n",Double.valueOf(account[indexTo][2]));
+                                                
                                                 System.out.print("Enter transfer amount Rs:");
                                                 double tranferAmount = scanner.nextDouble();
                                                 scanner.nextLine();
@@ -351,9 +350,7 @@ public class Application {
                             accountNum = scanner.nextLine().toUpperCase().strip();
 
                             if(validateAccountNumber(accountNum)){
-                                System.out.println("-----");
                                 status2 = existingAccountNumber(accountNum,account);
-                                System.out.println("99999");
 
                                     if(status2 == -1){
                                         System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
@@ -412,9 +409,7 @@ public class Application {
                                     
 
                     }while(!valid);
-
-
-                         System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
+                        System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
                         if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
                         screen = DASHBOARD;
                         break; 
