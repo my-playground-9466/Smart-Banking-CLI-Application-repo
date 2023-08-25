@@ -124,31 +124,22 @@ public class Application {
                         break;
 
                 case DEPOSIT_MONEY:
-
-                    int index = 0;
-                    boolean exist = false;
                     double currentBalance = 0;
                     String accountNum;
                     int status2;
 
-                    deposit:
                     do {
                         valid = true;
                         System.out.print("Enter your Account Number :");
                         accountNum = scanner.nextLine().toUpperCase().strip();
                     
-                    
-                    
                         if(validateAccountNumber(accountNum)){
 
                             status2 = existingAccountNumber(accountNum,account);
 
-                        
                             if(status2 == -1){
-                                System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                screen = DASHBOARD;
-                                break; 
+                                System.out.printf("%sAccount number is doesn't exist.%s\n", COLOR_RED_BOLD, RESET);
+            
 
                             }else{
 
@@ -163,11 +154,8 @@ public class Application {
 
 
                                 if(amount<500){
-                                    System.out.printf("%sInsufficiant amount.Minimum ammount is 500.Do you want to try again (y/n) ?%s\n",COLOR_RED_BOLD,RESET);
-                                    if(scanner.nextLine().toUpperCase().strip().equals("Y")) continue;
-                                    valid = false;
-                                    screen = DASHBOARD;
-                                    break;
+                                    System.out.printf("%sInsufficiant amount.Minimum ammount is Rs.500.%s\n",COLOR_RED_BOLD,RESET);
+                                    
                                 }else{
                                     currentBalance = Double.valueOf(account[status2][2]) + amount;
                                     account[status2][2] = currentBalance + "";
@@ -175,6 +163,7 @@ public class Application {
                                 }
 
                             }
+                       
                         }
 
                      } while (!valid);
@@ -198,34 +187,22 @@ public class Application {
                                 status2 = existingAccountNumber(accountNum,account);
 
                                     if(status2 == -1){
-                                        System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                        if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                        screen = DASHBOARD;
-                                        break; 
-
+                                        System.out.printf("%sAccount is doesn't exist%s\n", COLOR_RED_BOLD, RESET);
+                                        
                                     }else{
                                         System.out.printf("Current Balance is Rs: %.2f\n",Float.valueOf(account[status2][2]));
-
                                         System.out.print("Enter your withdrawal amount Rs :");
                                         double amount = scanner.nextDouble();
                                         scanner.nextLine();
 
                                         if(amount<100){
-                                            System.out.printf("%sInsufficiant amount.Minimum ammount is 100.Do you want to try again (y/n) ?%s\n",COLOR_RED_BOLD,RESET);
-                                            valid =  false;
-                                            //System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);   
-                                            if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                            screen = DASHBOARD;
-                                            break;
+                                            System.out.printf("%sInsufficiant amount.Minimum ammount is Rs.100.%s\n",COLOR_RED_BOLD,RESET);
+                                        
                                         }else{
 
                                             if(Double.valueOf(account[status2][2])<(amount+500)){
                                                 System.out.printf("%sDo you have insufficiant account balance.%s\n",COLOR_RED_BOLD,RESET);
-                                                valid = false;
-                                                System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);   
-                                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                                screen = DASHBOARD;
-                                                break;
+                                                
                                             }else{
                                                 currentBalance = Double.valueOf(account[status2][2]) - amount;
                                                 account[status2][2]= currentBalance + "";
@@ -236,9 +213,6 @@ public class Application {
                                         }
 
                                     }
-                            }else{
- 
-
                             }
                             
                         
@@ -268,26 +242,19 @@ public class Application {
 
                                     if(status2 == -1){
                                         System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                        if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                        screen = DASHBOARD;
-                                        break; 
 
                                     }else{
                                         indexFrom = status2;
 
                                         System.out.print("Enter your To Account Number :");
                                         accountNum = scanner.nextLine().toUpperCase().strip();
-                                        
-                                        //boolean status3 = validateAccountNumber(accountNum);
-                                        
+                                                                               
                                          if(validateAccountNumber(accountNum)){
                                             int status4 = existingAccountNumber(accountNum,account);
 
                                             if(status2 == -1){
-                                                System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                                if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                                screen = DASHBOARD;
-                                                break; 
+                                                System.out.printf("%sAccount number doesn't exist%s\n", COLOR_RED_BOLD, RESET);
+                                                
                                             }else{
                                                
                                                 indexTo = status4;
@@ -300,17 +267,14 @@ public class Application {
                                                 scanner.nextLine();
                                 
                                                 if(tranferAmount<100){
-                                                    System.out.println("Insuffician amount");
+                                                    System.out.printf("%sInsufficiant amount.Minimum ammount is Rs.100.%s\n",COLOR_RED_BOLD,RESET);
                                                     valid = false;
                                                     continue;
                                 
                                                 }else{
                                                     if(Double.valueOf(account[indexFrom][2])<(tranferAmount+500)){
-                                                        System.out.print("Insufficiant amount");
-                                                        System.out.printf("%sDo you want to try again =====? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                                        if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                                        screen = DASHBOARD;
-                                                        break;
+                                                        System.out.printf("%sInsufficiant amount.%s\n",COLOR_RED_BOLD,RESET);
+            
                                                     }else{
                                                         currentBalanceFrom = (Double.valueOf(account[indexFrom][2])-tranferAmount) - ((Double.valueOf(account[indexFrom][2])-tranferAmount)*2)/100.0;
                                                         currentBalanceTo = Double.valueOf(account[indexTo][2]) + tranferAmount;
@@ -353,10 +317,8 @@ public class Application {
                                 status2 = existingAccountNumber(accountNum,account);
 
                                     if(status2 == -1){
-                                        System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                        if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                        screen = DASHBOARD;
-                                        break; 
+                                        System.out.printf("%sAccount number doesn't exist.(Y/N)%s\n", COLOR_RED_BOLD, RESET);
+                                    
                                     }else{
                                         System.out.println("Account holder name :" + account[status2][1]);
                                         System.out.printf("Current Balance is Rs:%.2f\n",Float.valueOf(account[status2][2]));
@@ -374,7 +336,7 @@ public class Application {
 
                 case DELETE_ACCOUNT:
 
-                    index=-1;
+                    int index=-1;
                     String[][] newBankAccount = new String[account.length-1][3];
                     
                     do{
@@ -385,14 +347,12 @@ public class Application {
                                 if(validateAccountNumber(accountNum)){
                                     status2 = existingAccountNumber(accountNum,account);
                                     if(status2 == -1){
-                                        System.out.printf("%sDo you want to try again ? (Y/N)%s\n", COLOR_RED_BOLD, RESET);
-                                        if (scanner.nextLine().strip().toUpperCase().equals("Y")) continue;
-                                        screen = DASHBOARD;
-                                        break; 
+                                        System.out.printf("%sAccount number doesn't exist. (Y/N)%s\n", COLOR_RED_BOLD, RESET);
+                                        
                                     }else{
                                         index = status2;
                                         for(int i=0;i<account.length;i++){
-                                                if(index<i){
+                                                if(index>i){
                                                     newBankAccount[i]=account[i];
                                                 }else if(index == i){
                                                         continue;
@@ -433,13 +393,13 @@ public class Application {
 
         inputvalidation: do {
             valid = true;
-            String inputValue = String.format("Enter your %s: ", input);
+            String inputValue = String.format("Enter your %s:", input);
             System.out.print(inputValue);
             value = scanner.nextLine();
 
             if (value.isBlank()) {
                 valid = false;
-                System.out.printf("%scan't be empty%s", COLOR_RED_BOLD, RESET);
+                System.out.printf("%scan't be empty%s \n", COLOR_RED_BOLD, RESET);
                 continue;
 
             }
